@@ -19,7 +19,7 @@ max_new_tokens = 2048
 
 
 def load_mmlu_pro():
-    dataset = load_dataset("TIGER-Lab/MMLU-Pro")
+    dataset = load_dataset("bezir/MMLU-pro-TR")
     test_df, val_df = dataset["test"], dataset["validation"]
     test_df = preprocess(test_df)
     val_df = preprocess(val_df)
@@ -32,7 +32,7 @@ def load_model():
                 max_model_len=max_model_length,
                 trust_remote_code=True)
     sampling_params = SamplingParams(temperature=0, max_tokens=max_new_tokens,
-                                        stop=["Question:"])
+                                        stop=["Soru:"])
     tokenizer = transformers.AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
     return (llm, sampling_params), tokenizer
 
@@ -66,19 +66,19 @@ def select_by_category(df, subject):
 
 
 def format_cot_example(example, including_answer=True):
-    prompt = "Question:\n"
+    prompt = "Soru:\n"
     question = example["question"]
     options = example["options"]
     prompt += question + "\n"
-    prompt += "Options:\n"
+    prompt += "Şıklar:\n"
     for i, opt in enumerate(options):
         prompt += "{}. {}\n".format(choices[i], opt)
     if including_answer:
-        cot_content = example["cot_content"].replace("A: Let's think step by step.",
-                                                     "Answer: Let's think step by step.")
+        cot_content = example["cot_content"].replace("A: Adım adım düşünelim.",
+                                                     "Cevap: Adım adım düşünelim.")
         prompt += cot_content + "\n\n"
     else:
-        prompt += "Answer: Let's think step by step."
+        prompt += "Cevap: Adım adım düşünelim."
     return prompt
 
 
@@ -98,7 +98,7 @@ def generate_cot_prompt(val_df, curr, k):
 
 
 def extract_answer(text):
-    pattern = r"answer is \(?([A-J])\)?"
+    pattern = r"cevap: \(?([A-J])\)?"
     match = re.search(pattern, text)
     if match:
         return match.group(1)
@@ -108,7 +108,7 @@ def extract_answer(text):
 
 
 def extract_again(text):
-    match = re.search(r'.*[aA]nswer:\s*([A-J])', text)
+    match = re.search(r'.*[cC]evap:\s*([A-J])', text)
     if match:
         return match.group(1)
     else:
@@ -227,7 +227,13 @@ def main():
         test_df = select_by_category(full_test_df, subject)
         val_df = select_by_category(full_val_df, subject)
         output_path = os.path.join(save_result_dir, "{}.json".format(subject))
-        acc, corr_count, wrong_count = eval_cot(subject, model, tokenizer, val_df, test_df, output_path)
+        if os.path.exists(output_path):
+            with open(output_path, "r") as fi:
+                exists_result = json.load(fi)
+        else:
+            exists_result = []
+        acc, corr_count, wrong_count = eval_cot(subject, model, tokenizer, val_df,
+                                                test_df, output_path, exists_result)
         sta_dict[subject]["corr"] = corr_count
         sta_dict[subject]["wrong"] = wrong_count
         sta_dict[subject]["accu"] = acc
@@ -258,7 +264,7 @@ if __name__ == "__main__":
     parser.add_argument("--global_record_file", "-grf", type=str,
                         default="eval_record_collection.csv")
     parser.add_argument("--gpu_util", "-gu", type=str, default="0.8")
-    parser.add_argument("--model", "-m", type=str, default="meta-llama/Llama-2-7b-hf")
+    parser.add_argument("--model", "-m", type=str, default="ytu-ce-cosmos/turkish-gpt2-large")
 
     args = parser.parse_args()
     os.makedirs(args.save_dir, exist_ok=True)
