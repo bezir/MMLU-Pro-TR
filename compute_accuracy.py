@@ -10,14 +10,14 @@ path = sys.argv[1]
 
 def extract_answer(text, level):
     if level == 'l1':
-        pattern = r"answer is \(?([A-J])\)?"
+        pattern = r"cevap: \(?([A-J])\)?"
         match = re.search(pattern, text)
         if match:
             return match.group(1)
         else:
             return None
     elif level == 'l2':
-        pattern = r"answer is \(?([A-J])\)?"
+        pattern = r"cevap: \(?([A-J])\)?"
         match = re.search(pattern, text)
         if match:
             return match.group(1)
@@ -26,12 +26,12 @@ def extract_answer(text, level):
 
 
 def extract_again(text):
-    match = re.search(r'.*[aA]nswer:\s*([A-J])', text)
+    match = re.search(r'.*[cC]evap:\s*([A-J])', text)
     if match:
         return match.group(1)
     else:
         return extract_final(text)
-    
+
 
 def extract_final(text):
     pattern = r"\b[A-J]\b(?!.*\b[A-J]\b)"
