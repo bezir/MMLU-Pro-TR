@@ -2,7 +2,7 @@
 
 |[**🤗 Dataset**](https://huggingface.co/datasets/bezir/MMLU-pro-TR) | [**🏆Leaderboard(SOON!)**] | [**📖 Original Dataset Paper**](https://arxiv.org/abs/2406.01574) |
 
-This repo contains the evaluation code for the paper "[MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark](https://arxiv.org/abs/2406.01574.pdf)'s Turkish Translated Version"
+This repository contains the evaluation code for the Turkish-translated version of the paper "[MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark](https://arxiv.org/abs/2406.01574.pdf)"
 
 ## Introduction
 We introduce MMLU-Pro-TR, a benchmark that is the translated version of MMLU-Pro, an enhanced benchmark designed to evaluate language understanding models across broader and more challenging tasks. Building on the Massive Multitask Language Understanding (MMLU) dataset, MMLU-Pro integrates more challenging, reasoning-focused questions and increases the answer choices per question from four to ten, significantly raising the difficulty and reducing the chance of success through random guessing. MMLU-Pro comprises over 12,000 rigorously curated questions from academic exams and textbooks, spanning 14 diverse domains including Biology, Business, Chemistry, Computer Science, Economics, Engineering, Health, History, Law, Math, Philosophy, Physics, Psychology, and Others.  
