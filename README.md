@@ -1,6 +1,6 @@
 # MMLU-Pro
 
-|[**🤗 Dataset**](https://huggingface.co/datasets/bezir/MMLU-pro-TR) | [**🏆Leaderboard**](SOON!) | [**📖 Paper**](https://arxiv.org/abs/2406.01574) |
+|[**🤗 Dataset**](https://huggingface.co/datasets/bezir/MMLU-pro-TR) | [**🏆Leaderboard(SOON!)**] | [**📖 Original Dataset Paper**](https://arxiv.org/abs/2406.01574) |
 
 This repo contains the evaluation code for the paper "[MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark](https://arxiv.org/abs/2406.01574.pdf)'s Turkish Translated Version"
 
@@ -30,7 +30,7 @@ sh eval_tr_llama_3_8b.sh
 | Trendyol/Trendyol-LLM-7b-chat-v1.8                        |                  | 
 | TURKCELL/Turkcell-LLM-7b-v1                               |                  |
 
-For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard**](SOON!).
+For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
 ## Benchmarking Answer Extraction
 We provide different alternatives to do answer extraction. We found that different answer extraction mechanisms have minor impact on the results.
