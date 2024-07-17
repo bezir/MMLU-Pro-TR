@@ -1,4 +1,4 @@
-# MMLU-Pro
+# MMLU-Pro-TR
 
 |[**🤗 Dataset**](https://huggingface.co/datasets/bezir/MMLU-pro-TR) | [**🏆Leaderboard(SOON!)**] | [**📖 Original Dataset Paper**](https://arxiv.org/abs/2406.01574) |
 
