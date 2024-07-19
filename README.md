@@ -21,14 +21,15 @@ sh eval_tr_llama_3_8b.sh
 ```
 
 ## 🏆 Mini-Leaderboard
-| Model                                                     | Overall Accuracy | 
-|-----------------------------------------------------------|:----------------:|
-| ytu-ce-cosmos/Turkish-Llama-8b-Instruct-v0.1              |                  |
-| meta-llama/Meta-Llama-3-8B-Instruct                       |                  | 
-| Orbina/Orbita-v0.1                                        |                  |
-| KOCDIGITAL/Kocdigital-LLM-8b-v0.1                         |                  |
-| Trendyol/Trendyol-LLM-7b-chat-v1.8                        |                  | 
-| TURKCELL/Turkcell-LLM-7b-v1                               |                  |
+| Model                                                     |   MMLU-PRO-TR   | MMLU-TR | 
+|-----------------------------------------------------------|:---------------:|:-------:|
+| ytu-ce-cosmos/Turkish-Llama-8b-Instruct-v0.1              | 23.90           | 51.75
+| KOCDIGITAL/Kocdigital-LLM-8b-v0.1                         | 21.83           | 47.35
+| meta-llama/Meta-Llama-3-8B-Instruct                       | 20.93           | 49.40
+| Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 18.15           | N/A
+| TURKCELL/Turkcell-LLM-7b-v1                               | 17.15           | 39.03
+| ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | 10.88           | N/A
+| Orbina/Orbita-v0.1                                        | N/A             | 49.51
 
 For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
