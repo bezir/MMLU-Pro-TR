@@ -23,13 +23,15 @@ sh eval_tr_llama_3_8b.sh
 ## 🏆 Mini-Leaderboard
 | Model                                                     |   MMLU-PRO-TR   | MMLU-TR | 
 |-----------------------------------------------------------|:---------------:|:-------:|
+| Metin/LLaMA-3-8B-Instruct-TR-DPO                          | 27.00           | 49.71
 | ytu-ce-cosmos/Turkish-Llama-8b-Instruct-v0.1              | 23.90           | 51.75
+| Orbina/Orbita-v0.1                                        | 22.95           | 49.51
 | KOCDIGITAL/Kocdigital-LLM-8b-v0.1                         | 21.83           | 47.35
 | meta-llama/Meta-Llama-3-8B-Instruct                       | 20.93           | 49.40
-| Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 18.15           | N/A
+| curiositytech/MARS                                        | 20.80           | 46.73
+| Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 18.15           | 41.91
 | TURKCELL/Turkcell-LLM-7b-v1                               | 17.15           | 39.03
 | ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | 10.88           | N/A
-| Orbina/Orbita-v0.1                                        | N/A             | 49.51
 
 For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
