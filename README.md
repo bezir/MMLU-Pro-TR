@@ -21,17 +21,20 @@ sh eval_tr_llama_3_8b.sh
 ```
 
 ## 🏆 Mini-Leaderboard
-| Model                                                     |   MMLU-PRO-TR   | MMLU-TR | 
-|-----------------------------------------------------------|:---------------:|:-------:|
-| Metin/LLaMA-3-8B-Instruct-TR-DPO                          | 27.00           | 49.71
-| ytu-ce-cosmos/Turkish-Llama-8b-Instruct-v0.1              | 23.90           | 51.75
-| Orbina/Orbita-v0.1                                        | 22.95           | 49.51
-| KOCDIGITAL/Kocdigital-LLM-8b-v0.1                         | 21.83           | 47.35
-| meta-llama/Meta-Llama-3-8B-Instruct                       | 20.93           | 49.40
-| curiositytech/MARS                                        | 20.80           | 46.73
-| Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 18.15           | 41.91
-| TURKCELL/Turkcell-LLM-7b-v1                               | 17.15           | 39.03
-| ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | 10.88           | N/A
+
+| Models                                                    | Original MMLU Score | MMLU Pro Score | Drop       |
+|-----------------------------------------------------------|:-------------------:|:--------------:|:-----------|
+| Metin/LLaMA-3-8B-Instruct-TR-DPO                          | 49.71               | 27.00          | 22.71      |
+| ytu-ce-cosmos/Turkish-Llama-8b-Instruct-v0.1              | 51.75               | 23.90          | 27.85      |
+| VeriUS/VeriUS-LLM-8b-v0.2                                 | 48.81               | 23.23          | 25.58      |
+| Orbina/Orbita-v0.1                                        | 49.51               | 22.95          | 26.56      |
+| KOCDIGITAL/Kocdigital-LLM-8b-v0.1                         | 47.35               | 21.83          | 25.52      |
+| meta-llama/Meta-Llama-3-8B-Instruct                       | 49.29               | 20.93          | 28.36      |
+| NousResearch/Meta-Llama-3-8B                              | 49.29               | 20.93          | 28.36      |
+| curiositytech/MARS                                        | 46.73               | 20.81          | 25.92      |
+| Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 41.91               | 18.15          | 23.76      |
+| TURKCELL/Turkcell-LLM-7b-v1                               | 39.03               | 17.15          | 21.88      |
+| ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | N/A                 | 10.88          | N/A        |
 
 For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
