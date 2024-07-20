@@ -34,7 +34,7 @@ sh eval_tr_llama_3_8b.sh
 | curiositytech/MARS                                        | 46.73               | 20.81          | 25.92      |
 | Trendyol/Trendyol-LLM-7b-chat-v1.8                        | 41.91               | 18.15          | 23.76      |
 | TURKCELL/Turkcell-LLM-7b-v1                               | 39.03               | 17.15          | 21.88      |
-| ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | N/A                 | 10.88          | N/A        |
+| ytu-ce-cosmos/turkish-gpt2-large-750m-instruct-v0.1       | 26.56               | 10.88          | 15.67      |
 
 For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
