@@ -16,8 +16,7 @@ Please refer to huggingface [**🤗 Dataset**](https://huggingface.co/datasets/T
 To run local inference, modify the model name in the following script and execute it:
 
 ```bash
-cd scripts/examples/
-sh eval_tr_llama_3_8b.sh
+sh run.sh
 ```
 
 ## 🏆 Mini-Leaderboard
@@ -38,11 +37,6 @@ sh eval_tr_llama_3_8b.sh
 
 For more details on various models and their accuracy across different subjects, please visit our [**Leaderboard(SOON!)**].
 
-## Benchmarking Answer Extraction
-We provide different alternatives to do answer extraction. We found that different answer extraction mechanisms have minor impact on the results.
-```
-python compute_accuracy.py results/llama-3-8b-quantized/CoT/all/
-```
 
 ## Citation
 
