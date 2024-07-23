@@ -39,13 +39,14 @@ def load_model():
 
 def preprocess(test_df):
     res_df = []
-    for each in test_df:
-        options = []
-        for opt in each["options"]:
+    for each in tqdm(test_df, total=len(test_df)):
+        options_updated = []
+        options = eval(each["options"])
+        for opt in options:
             if opt == "N/A":
                 continue
-            options.append(opt)
-        each["options"] = options
+            options_updated.append(opt)
+        each["options"] = options_updated
         res_df.append(each)
     return res_df
 
@@ -71,6 +72,7 @@ def format_cot_example(example, including_answer=True):
     options = example["options"]
     prompt += question + "\n"
     prompt += "Şıklar:\n"
+
     for i, opt in enumerate(options):
         prompt += "{}. {}\n".format(choices[i], opt)
     if including_answer:
@@ -99,6 +101,7 @@ def generate_cot_prompt(val_df, curr, k):
 
 def extract_answer(text):
     pattern = r"cevap: \(?([A-J])\)?"
+    print("Answer: ", text)
     match = re.search(pattern, text)
     if match:
         return match.group(1)
@@ -168,12 +171,18 @@ def eval_cot(subject, model, tokenizer, val_df, test_df, output_path):
     logging.info("evaluating " + subject)
     inference_batches = []
 
+    
+    indices_to_delete = []
+    
     for i in tqdm(range(len(test_df))):
+        counter = 0
         k = args.ntrain
         curr = test_df[i]
         prompt_length_ok = False
         prompt = None
         while not prompt_length_ok:
+            if counter > 20:
+                break
             prompt = generate_cot_prompt(val_df, curr, k)
             inputs = tokenizer(prompt, return_tensors="pt")
             inputs = {key: value.cuda() for key, value in inputs.items()}
@@ -181,8 +190,16 @@ def eval_cot(subject, model, tokenizer, val_df, test_df, output_path):
             if length < max_model_length - max_new_tokens:
                 prompt_length_ok = True
             k -= 1
+            counter += 1
+        if counter > 20:
+            print("continued")
+            indices_to_delete.append(i)
+            continue
         inference_batches.append(prompt)
-
+    
+    # Delete the rows with indices in indices_to_delete
+    test_df = [d for i, d in enumerate(test_df) if i not in indices_to_delete]
+    
     pred_batch, response_batch = batch_inference(llm, sampling_params, inference_batches)
     res = []
     for j, curr in enumerate(test_df):
@@ -190,6 +207,7 @@ def eval_cot(subject, model, tokenizer, val_df, test_df, output_path):
         curr["model_outputs"] = response_batch[j]
         res.append(curr)
     accu, corr, wrong = save_res(res, output_path)
+
     logging.info("this batch accu is: {}, corr: {}, wrong: {}\n".format(str(accu), str(corr), str(wrong)))
 
     accu, corr, wrong = save_res(res, output_path)
@@ -233,7 +251,7 @@ def main():
         else:
             exists_result = []
         acc, corr_count, wrong_count = eval_cot(subject, model, tokenizer, val_df,
-                                                test_df, output_path, exists_result)
+                                                test_df, output_path)
         sta_dict[subject]["corr"] = corr_count
         sta_dict[subject]["wrong"] = wrong_count
         sta_dict[subject]["accu"] = acc
@@ -288,5 +306,3 @@ if __name__ == "__main__":
                                   logging.StreamHandler(sys.stdout)])
 
     main()
-
-
